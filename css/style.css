@@ -1,9 +1,9 @@
 body {
-    font-family: 'Lexend Deca';font-size;
+    font-family: 'Lexend Deca';
     background-color: #212121;
 }
 
-#logo{
+#logo {
     width: 90px;
     background-color: black;
     margin: 0 auto;
@@ -12,10 +12,11 @@ body {
     border-radius: 50px;
 }
 
-#titulo{
+#titulo {
     text-align: center;
-    
+
 }
+
 .login-container {
     max-width: 300px;
     margin: 0 auto;
@@ -24,13 +25,16 @@ body {
     border-radius: 5%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .form-group {
     margin-bottom: 15px;
 }
+
 .form-group label {
     display: block;
     font-weight: bold;
 }
+
 .form-group input {
     width: 100%;
     height: 4vh;
@@ -39,6 +43,7 @@ body {
     font-size: 17px;
     margin-top: 10px;
 }
+
 .form-group select {
     width: 100%;
     padding: 5px;
@@ -46,6 +51,7 @@ body {
     border-radius: 3px;
     margin-top: 10px;
 }
+
 .form-group button {
     width: 100%;
     padding: 10px;
@@ -58,11 +64,11 @@ body {
 }
 
 .login-container {
-animation-duration: 1.5s;
-animation-name: slidein;
+    animation-duration: 1.5s;
+    animation-name: slidein;
 }
 
-#boton{
+#boton {
     background-color: black;
     color: white;
     border: none;
@@ -74,7 +80,7 @@ animation-name: slidein;
     width: 100%;
 }
 
-#boton:hover{
+#boton:hover {
     background-color: #212121;
     color: #ffffff;
     border: none;
@@ -83,11 +89,11 @@ animation-name: slidein;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-#boton:active{
+#boton:active {
     background-color: #6d6d6d;
     color: #ffffff;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    
+
 }
