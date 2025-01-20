@@ -2,50 +2,272 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGEPAT - Iniciar Sesión</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+    <title>SIGEPAT</title>
+
+    <link rel="stylesheet" href="./view/css/estilos.css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./view/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./view/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./view/favicon/favicon-16x16.png" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet" />
 
 </head>
 
 <body>
-    <div class="login-container">
-        <img src="./img/icon.png" alt="X" id="logo">
-        <div id="titulo">
-            <h1>Inicio de Sesión</h1>
+
+    <div id="containerGrandfather"></div>
+
+    <template id="temp-container">
+
+        <div id="containerFather">
+            <img src="./view/img/icon.png" alt="X" id="logo">
+            <div id="container"></div>
         </div>
 
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="user-type">Tipo de Documento:</label>
-                <select id="user-type" name="user-type">
-                    <option value="medico">Cedula de Ciudadanía</option>
-                    <option value="paciente">Cedula de Extranjería</option>
-                    <option value="tutor">Pasaporte</option>
-                    <option value="tutor">Permiso por Protección Temporal</option>
+    </template>
 
+    <template id="temp-login">
+
+        <div class="form-group">
+            <div id="titulo">
+                <h1>Inicio de Sesión</h1>
+            </div>
+        </div>
+
+        <form id="form-login">
+
+            <div class="form-group">
+                <label>N° Documento:</label>
+                <input type="number" id="username" name="numDoc" required />
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" id="password" name="contrasena" required />
+            </div>
+
+        </form>
+
+        <div>
+            <button class="boton" onclick="ingresar()">Ingresar</button>
+        </div>
+
+    </template>
+
+    <template id="temp-menu-personal">
+
+        <div id="titulo">
+            <h1>Bienvenido "Personal Medico"</h1>
+        </div>
+
+        <div id="subtitulo">
+            <h3>¿Que accion desea realizar?</h3>
+        </div>
+
+        <div>
+            <button class="boton" onclick="mostrarRegistro()"> Registrar Paciente </button>
+        </div>
+
+        <div>
+            <button class="boton" onclick="mostrarBusqueda()"> Buscar Paciente </button>
+        </div>
+
+        <div>
+            <button class="cerrarSesión" onclick="mostrarInicio()">Cerrar sesión</button>
+        </div>
+
+    </template>
+
+    <template id="temp-menu-busqueda">
+
+        <div id="titulo">
+            <h1>Búsqueda de Paciente</h1>
+        </div>
+
+        <div id="subtitulo">
+            <h3>Ingrese el tipo y número de identificación del paciente</h3>
+        </div>
+
+        <form id="form-search">
+
+            <div class="form-group">
+                <select id="user-type" name="document-type">
+                    <option hidden>Elegir Tipo de Documento</option>
+                    <option>Cedula de Ciudadanía</option>
+                    <option>Tarjeta de Identidad</option>
+                    <option>Cedula de Extranjería</option>
+                    <option>Pasaporte</option>
+                    <option>Permiso por Protección Temporal</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="username">N° Documento:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button id="boton">Ingresar</button>
 
+            <div class="form-group">
+                <input type="number" id="buscador" name="buscador" required>
             </div>
+
         </form>
-    </div>
+
+        <div>
+            <br>
+            <button class="boton" onclick="buscar()"> Buscar Paciente </button>
+        </div>
+
+        <div>
+            <button class="cerrarSesión" onclick="regresarMenu()">Regresar</button>
+        </div>
+
+    </template>
+
+    <template id="temp-registro">
+        <div class="contenedor-registro">
+
+            <div id="tituloRegistro">
+                <h1>Registro de Enfermería</h1>
+            </div>
+
+            <img src="./view/img/icon.png" alt="X" id="logoRegistro">
+
+            <form id="form-registro">
+
+                <div class="form-group">
+
+                    <label>Información Personal</label>
+
+                    <input type="text" id="nombre" required placeholder="Nombre Completo">
+
+                    <select id="tipoDeDocumento" name="tipoDeDocumento">
+                        <option value="medico" hidden>D.I</option>
+                        <option value="medico">CC</option>
+                        <option value="medico">TI</option>
+                        <option value="medico">CE</option>
+                        <option value="medico">PA</option>
+                        <option value="medico">PPT</option>
+                    </select>
+
+                    <input type="number" id="numeroDocumento" required placeholder="N° Documento">
+
+                    <select id="tipoSangre" required placeholder="RH">
+                        <option value="sangre" hidden>RH</option>
+                        <option value="sangre">AB+</option>
+                        <option value="sangre">AB-</option>
+                        <option value="sangre">A+</option>
+                        <option value="sangre">A-</option>
+                        <option value="sangre">B+</option>
+                        <option value="sangre">B-</option>
+                        <option value="sangre">O+</option>
+                        <option value="sangre">O-</option>
+                    </select>
+
+                    <input type="text" id="peso" required placeholder="Peso">
+
+                    <input type="text" id="estatura" required placeholder="Estatura">
+
+                </div>
+
+                <div class="form-group">
+                    <br>
+                    <label type="text">Fecha de Nacimiento</label>
+                    <input type="date" id="nacimiento" required placeholder="Dia">
+                    <input type="number" id="numeroCama" required placeholder="N° Cama">
+                    <input type="number" id="numeroRegistro" required placeholder="N° Registro">
+                    <input type="text" id="liquidos" required placeholder="Restricción de Líquidos">
+                    <input type="text" id="diagnostico" required placeholder="Diagnóstico">
+                    <input type="text" id="antecedentesAlergicos" required placeholder="Antecedentes Alergicos">
+                </div>
+
+                <div class="form-group">
+                    <br>
+
+                    <table id="tabla">
+
+                        <tr id="fila1">
+                            <td>Tipo de Solución</td>
+                            <td>Volumen Total</td>
+                            <td>Mezcla</td>
+                            <td>Centímetros por Hora</td>
+                        </tr>
+                        <br>
+
+                        <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <br>
+                    <label>Actividades Específicas de enfermería</label>
+                    <input type="text" id="campo" required>
+                    <input type="text" id="campo" required>
+                    <input type="text" id="campo" required>
+                    <input type="text" id="campo" required>
+                </div>
+
+                <div class="form-group">
+                    <br>
+                    <label>Observaciones</label>
+
+                    <div class="observaciones">
+                        <input type="date" class="nacimiento" required placeholder="Día">
+                        <textarea required></textarea>
+                    </div>
+
+                    <div class="observaciones">
+                        <input type="date" class="nacimiento" required placeholder="Día">
+                        <textarea required></textarea>
+                    </div>
+
+                    <div class="observaciones">
+                        <input type="date" class="nacimiento" required placeholder="Día">
+                        <textarea required></textarea>
+                    </div>
+                    <div class="observaciones">
+                        <input type="date" class="nacimiento" required placeholder="Día">
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+            </form>
+
+            <div>
+                <br>
+                <button class="btnFinalizarRegistro" onclick="regresarInicioRegistro()">Finalizar Formulario</button>
+            </div>
+
+    </template>
+
+
+    <script src="./view/js/view.js"></script>
+
 </body>
 
 </html>
