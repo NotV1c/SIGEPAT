@@ -1,0 +1,356 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body {
+    font-family: 'Lexend Deca';
+    background-color: #060606;
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#logo {
+    width: 90px;
+    background-color: black;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#titulo {
+    text-align: center;
+}
+
+#subtitulo {
+    text-align: center;
+}
+
+#containerFather {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fade-in-top .8s ease-out;
+}
+
+.form-group {
+    margin-top: 15px;
+    font-family: 'Lexend Deca';
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    font-family: 'Lexend Deca';
+}
+
+.form-group input {
+    width: 100%;
+    height: 5vh;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 17px;
+    margin-top: 10px;
+    font-family: 'Lexend Deca';
+}
+
+.form-group select {
+    width: 100%;
+    height: 5vh;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-family: 'Lexend Deca';
+}
+
+.boton {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10px 28px;
+    font-size: 1.1em;
+    transition: box-shadow 0.1s ease-in-out;
+    width: 100%;
+    font-family: 'Lexend Deca';
+}
+
+.boton:hover {
+    background-color: #212121;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.boton:active {
+    background-color: #6d6d6d;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.cerrarSesión {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10px 28px;
+    font-size: 1.1em;
+    transition: box-shadow 0.1s ease-in-out;
+    width: 100%;
+    font-family: 'Lexend Deca';
+}
+
+.cerrarSesión:hover {
+    background-color: #6b0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cerrarSesión:active {
+    background-color: #6d6d6d;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/** ***************** Registro ********************/
+
+.contenedor-registro {
+    max-width: 75%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 2%;
+}
+
+#tituloRegistro {
+    position: absolute;
+}
+
+#logoRegistro {
+    width: 90px;
+    background-color: black;
+    margin-left: 90%;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#nombre {
+    width: 49.65%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#tipoDeDocumento {
+    width: 4%;
+    height: 30px;
+    position: absolute;
+    font-family: 'Lexend Deca';
+}
+
+#numeroDocumento {
+    margin-left: 5.3%;
+    width: 15%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#tipoSangre {
+    width: 4%;
+    height: 30px;
+    position: absolute;
+    font-family: 'Lexend Deca';
+}
+
+#peso {
+    margin-left: 5.8%;
+    width: 10%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#estatura {
+    width: 10%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#nacimiento {
+    width: 14%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#numeroCama {
+    width: 10%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#numeroRegistro {
+    width: 12%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#liquidos {
+    width: 60.3%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#diagnostico {
+    width: 99.2%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#antecedentesAlergicos {
+    width: 99.2%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+#tabla {
+    width: 99.2%;
+    height: 26px;
+    ;
+    font-family: 'Lexend Deca';
+}
+
+#fila1 {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Lexend Deca';
+}
+
+#campo {
+    width: 99.2%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+}
+
+.fecha {
+    font-family: 'Lexend Deca';
+    font-weight: bold;
+
+}
+
+.observaciones {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 10px;
+}
+
+.form-group textarea {
+    width: 100%;
+    height: 100px;  /* Establecer altura inicial */
+    resize: none;
+    overflow: hidden;
+    margin-left: 15%;
+    font-size: 17px;
+    font-family: 'Lexend Deca';
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    line-height: 1.2em;
+}
+ 
+ input.nacimiento {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14%;
+    height: 26px;
+    font-family: 'Lexend Deca';
+    
+ }
+
+.btnFinalizarRegistro {
+    margin: 0.5%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10px 10px;
+    font-size: 1.1em;
+    transition: box-shadow 0.1s ease-in-out;
+    width: 100%;
+    font-family: 'Lexend Deca';
+}
+
+.btnFinalizarRegistro:hover {
+    background-color: #212121;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btnFinalizarRegistro:active {
+    background-color: #6d6d6d;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/******************* Animación ********************/
+
+@-webkit-keyframes fade-in-top {
+    0% {
+        -webkit-transform: translateY(-200px);
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-top {
+    0% {
+        -webkit-transform: translateY(-200px);
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
