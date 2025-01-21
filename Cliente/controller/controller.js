@@ -10,6 +10,31 @@ window.onload = function () {
     mostrarInicio();
 }
 
+//** Textareas Responsive */
+
+function configurarAutoRedimensionTextareas() {
+    const areasDeTexto = document.querySelectorAll("textarea");
+    areasDeTexto.forEach(areaDeTexto => {
+        // Función para ajustar la altura
+        const ajustarAltura = () => {
+            areaDeTexto.style.height = '26px';  // Forzar altura inicial
+            areaDeTexto.style.height = (areaDeTexto.scrollHeight > 26 ? areaDeTexto.scrollHeight : 26) + 'px';
+        };
+
+        // Ajustar altura inicial
+        ajustarAltura();
+
+        // Escuchar eventos de entrada
+        areaDeTexto.addEventListener("input", ajustarAltura);
+
+        // Ajustar altura al cargar la página
+        window.addEventListener('load', ajustarAltura);
+
+        // Ajustar altura al cambiar el tamaño de la ventana
+        window.addEventListener('resize', ajustarAltura);
+    });
+}
+
 //** Plantillas */
 
 function mostrarInicio() {
