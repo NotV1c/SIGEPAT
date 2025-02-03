@@ -1,0 +1,167 @@
+-- CREACIÓN
+
+CREATE DATABASE SIGEPAT;
+
+USE sigepat;
+
+CREATE TABLE documento(
+	idDoc tinyint not null unique primary key,
+    nombre char (31)
+);
+
+CREATE TABLE usuario(
+	idUsuario bigint not null unique primary key auto_increment,
+    nombre char(50),
+    rol char(15),
+    idDoc tinyint,
+    numDoc bigint,
+    contrasena varchar(10),
+    FOREIGN KEY (idDoc) REFERENCES documento(idDoc)
+);
+
+CREATE TABLE clinica(
+	idClinica bigint not null unique primary key,
+    nombre char(100)
+ );
+ 
+CREATE TABLE paciente(
+	idPaciente bigint not null unique primary key auto_increment,
+    nombre char(50),
+    idDoc tinyint,
+    numDoc bigint,
+    tipoSangre ENUM('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') not null,
+	numCama smallint not null unique,
+    numRegistro bigint not null unique,
+    peso decimal(4,2),
+    estatura decimal(3,2),
+    fechaNac date,
+    contrasena varchar(50),
+    FOREIGN KEY (idDoc) REFERENCES documento(idDoc)
+);
+
+CREATE TABLE contrasenaPaciente(
+	contrasena VARCHAR(20) primary key,
+	idPaciente bigint,
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+CREATE TABLE clinicaUsuario(
+	idUsuario bigint,
+    idClinica bigint,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (idClinica) REFERENCES clinica(idClinica)
+);
+
+CREATE TABLE solucion(
+	idPaciente bigint,
+    tipoSolucion varchar(100),
+    volumenTotal decimal(5,2),
+    mezcla varchar (100),
+    cmHora decimal(4,2),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente) 
+);
+
+CREATE TABLE actividad(
+	idPaciente bigint,
+    actividad varchar(200),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+CREATE TABLE diagnostico(
+	idPaciente bigint,
+    diagnostico varchar(500),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+CREATE TABLE antAlergicos(
+	idPaciente bigint,
+    antAlergicos varchar(100),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+CREATE TABLE observaciones(
+	idPaciente bigint,
+    fecha date,
+    observaciones varchar(500),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+CREATE TABLE restLiquidos(
+	idPaciente bigint,
+    restLiquidos varchar(100),
+    FOREIGN KEY (idPaciente) REFERENCES paciente(idPaciente)
+);
+
+DELIMITER $$
+CREATE TRIGGER before_insert_paciente
+BEFORE INSERT ON paciente
+FOR EACH ROW
+BEGIN
+    IF NEW.numRegistro IS NULL THEN
+        SET NEW.numRegistro = (SELECT IFNULL(MAX(numRegistro), 0) + 1 FROM paciente);
+    END IF;
+END$$
+DELIMITER ;
+
+-- INSERCIÓN DE DATOS FALSOS
+
+INSERT INTO documento (idDoc, nombre)
+VALUES
+(1, 'Tarjeta de identidad'),
+(2, 'Cédula de ciudadanía'),
+(3, 'Cédula de extranjería'),
+(4, 'Pasaporte'),
+(5, 'Permiso por protección temporal');
+
+INSERT INTO usuario (idUsuario, nombre, rol, numDoc, idDoc, contrasena)
+VALUES
+(1, 'Juan Pérez', 'Personal Médico', '1234567890', 1, 'pass123'),
+(2, 'Carlos Gómez', 'Personal Médico', '1111111111', 3, 'pass123'),
+(3, 'Ana López', 'Tutor Legal', '2222222222', 1, 'pass123');
+
+INSERT INTO clinica (idClinica, nombre)
+VALUES
+(1, 'Clínica A'),
+(2, 'Clínica B'),
+(3, 'Clínica C');
+
+INSERT INTO clinicaUsuario (idUsuario, idClinica)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3);
+
+INSERT INTO paciente (idPaciente, nombre, idDoc, numDoc, numCama, numRegistro, tipoSangre, peso, estatura, fechaNac, contrasena)
+VALUES
+(1, 'Maria Rodriguez', 2, 9876543210, 101, 1, 'O+', 70.50, 1.75, '1990-01-01', 'pass123');
+
+INSERT INTO contrasenaPaciente (contrasena, idPaciente)
+VALUES
+("contrasena123", 1);
+
+INSERT INTO solucion (idPaciente, tipoSolucion, volumenTotal, mezcla, cmHora)
+VALUES
+(1, 'Solución A', 100.00, 'Mezcla 1', 2.50);
+
+INSERT INTO actividad (idPaciente, actividad)
+VALUES
+(1, 'Actividad 1');
+
+INSERT INTO diagnostico (idPaciente, diagnostico)
+VALUES
+(1, 'Diagnóstico 1');
+
+INSERT INTO antAlergicos (idPaciente, antAlergicos)
+VALUES
+(1, 'Alergía 1');
+
+INSERT INTO observaciones (idPaciente, fecha, observaciones)
+VALUES
+(1, '2022-01-01', 'Observación 1');
+
+INSERT INTO restLiquidos (idPaciente, restLiquidos)
+VALUES
+(1, 'Restricción 1');
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345';
+FLUSH PRIVILEGES;

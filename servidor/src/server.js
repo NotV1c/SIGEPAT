@@ -28,10 +28,3 @@ app.use(require('./routes/patientRoutes'));
 app.listen(3000, () => {
     console.log( `Server is running on port ${app.get('port')}`);
 });
-
-/* fetch('http://localhost:3000/usuarios', {
-    method: 'GET',
-    //mode: 'no-cors',
-    })
-    .then(response => console.log(response))
-    .catch(err => console.error(error)); */
